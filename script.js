@@ -75,6 +75,15 @@ function saveOperator(e) {
   currentOperator = e.target.innerHTML;
 }
 
+function resetCalculator() {
+currentDisplayValue = null;
+firstOperand = null;
+secondOperand = null;
+currentOperator = null;
+nextInputResetScreen = false;
+display.innerHTML = 0;
+}
+
 // Events
 numberButtons.forEach(number => {
   number.addEventListener('click', appendNumbers)
@@ -85,9 +94,11 @@ operatorButtons.forEach(button => {
       saveFirstNumber(e);
       saveOperator(e);
       nextInputResetScreen = true;
-    })})
+    })});
 
 equalsButton.addEventListener('click', () => {
   secondOperand = currentDisplayValue;
   operate()
 });
+
+clearButton.addEventListener('click', resetCalculator);
